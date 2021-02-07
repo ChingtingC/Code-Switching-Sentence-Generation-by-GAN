@@ -9,3 +9,22 @@ Ching-Ting Chang, Shun-Po Chuang, Hung-Yi Lee
 ## Abstract
 
 Code-switching is about dealing with alternative languages in speech or text. It is partially speaker-depend and domain-related, so completely explaining the phenomenon by linguistic rules is challenging. Compared to most monolingual tasks, insufficient data is an issue for code-switching. To mitigate the issue without expensive human annotation, we proposed an unsupervised method for code-switching data augmentation. By utilizing a generative adversarial network, we can generate intra-sentential code-switching sentences from monolingual sentences. We applied proposed method on two corpora, and the result shows that the generated code-switching sentences improve the performance of code-switching language models.
+
+
+## Source Code
+
+### Prerequisites
+1. Python packages
+    - python 3
+    - keras 2
+    - numpy
+    - jieba
+    - h5py
+    - tqdm
+    - nltk
+2. Data
+    - text file
+    - speech file
+3. Other installation
+    - kaldi
+    - srilm
