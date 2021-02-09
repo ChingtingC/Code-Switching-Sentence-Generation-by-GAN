@@ -24,6 +24,11 @@ Code-switching is about dealing with alternative languages in speech or text. It
     - Examples
 5. Conclusion
 
+### Corpora
+
+1. LectureSS: The recording of “Signal and System” (SS) course by one Tai-wanese instructor at National Taiwan University in 2006.
+2. SEAME: South East Asia Mandarin-English, a conversational speech by Singapore and Malaysia speakers with almost balanced gender in Nanyang Technological University and Universities Sains Malaysia.
+
 ## Source Code
 
 ### Prerequisites
@@ -37,7 +42,7 @@ Code-switching is about dealing with alternative languages in speech or text. It
     - nltk
 2. Data
     - text file
-    - speech file
+    - speech file (for the extended experiment, i.e. automatic speech recognition(ASR))
 3. Other installation
     - kaldi
     - srilm
