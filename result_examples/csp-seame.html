@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="refresh" content="600">
+    <title>Code-switching Sentence Generation</title>
+    <script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+<style>
+/* Style the header */
+header {
+    background-color: #666;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+
+.container.custom-container-width {
+    max-width: 900px;
+}
+
+</style>
+
+<!--
+-->
+
+</head>
+<body>
+
+<header>
+        <h1 align="center">Code-switching Sentence Generation</h1>
+        <h2 align="center">by Generative Adversarial Networks and its Application to Data Augmentation</h3>
+</header>
+
+<ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+       <a class="nav-link" href="/cs-generation/index.html" >
+        Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/cs-generation/csp.html" >
+        CSP prediction</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/cs-generation/gen.html" >
+        CS Generation</a>
+    </li>
+</ul>
+
+<div class="nav navbar-nav">
+    <ul class="navbar-dark bg-dark">
+        <a class="nav-link" href="/cs-generation/csp.html" >
+        ♥Introduction</a>
+        <a class="nav-link" href="/cs-generation/csp-ss.html" >
+        ♥LectureSS</a>
+        <a class="nav-link active" href="/cs-generation/csp-seame.html" >
+        ♥SEAME</a>
+    </ul>
+</div>
+
+<!--
+    <div class="container">-->
+    <div class="container custom-container-width">
+<br>
+<br>
+        <h3 align="center">Code-switching point (CSP) prediction</h3>
+<br>
+        <h4 align="center">SEAME</h4>
+        <h5 align="center">(not shown in the article)</h5>
+        <table class="table table-striped">
+            <col width="35%">
+            <col width="65%">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center"> </th>
+                    <th scope="col" class="text-center"> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="center">Ground truth
+                    </td>
+                    <td>Huh 你們 要 去 哦 你們 要 去 gym 啊
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Input
+                    </td>
+                    <td>哼 你們 要 去 哦 你們 要 去 體育館 啊<br>
+(Huh? Will you go? Will you go to the gym?)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Random
+                    </td>
+                    <td>哼 you guys 要 go 哦 你們 要 去 體育館
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Noun
+                    </td>
+                    <td>哼 你們 要 去 哦 你們 要 去 gym 啊
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Proposed
+                    </td>
+                    <td>哼 you guys 要 去 哦 你們 要 去 體育館 啊
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Proposed (+pos)
+                    </td>
+                    <td>Huh 你們 要 去 哦 你們 要 去 gym 啊
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <div class="bd-example">
+            <details>
+            <summary>
+                <B>Description:</B>
+            </summary>
+            <p>
+                In this case, the code-switching points appear at a noun (gym)
+                and an interjection (huh).
+                Also, the rule-based approach "noun" is accurate, but cannot find out all CSPs.
+                The proposed method with POS tagging can find out all CSPs.
+            </p>
+            </details>
+        </div>
+<br>
+<br>
+<br>
+<h5 align="center"><a href='#top'> [top] </a></h5>
+</div>
+
+</body>
+</html>
