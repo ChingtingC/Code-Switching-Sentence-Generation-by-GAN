@@ -1,4 +1,4 @@
-# Code-switching-Sentence-Generation-by-Generative-Adversarial-Networks-and-its-Application-to-Data-Augmentation
+# Code switching Sentence Generation by Generative Adversarial Networks and its Application to Data Augmentation
 
 Ching-Ting Chang, Shun-Po Chuang, Hung-Yi Lee
 
