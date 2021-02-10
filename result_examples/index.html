@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+    <meta http-equiv="refresh" content="600">
+-->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Code-switching Sentence Generation</title>
+    <script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+<style>
+/* Style the header */
+header {
+    background-color: #666;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+
+.container.custom-container-width {
+    max-width: 650px;
+}
+
+</style>
+
+<!--
+-->
+
+</head>
+<body>
+
+<header>
+        <h1 align="center">Code-switching Sentence Generation</h1>
+        <h2 align="center">by Generative Adversarial Networks and its Application to Data Augmentation</h3>
+</header>
+
+<ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+           <a class="nav-link active" href="/cs-generation/index.html" >
+            Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/cs-generation/csp.html" >
+            CSP prediction</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/cs-generation/gen.html" >
+            CS Generation</a>
+        </li>
+</ul>
+
+    <div class="container">
+<br>
+<!--
+        <h5 align="center">Ching-Ting Chang, Shun-Po Chuang, Hung-Yi Lee</h5>
+        <h5 align="center">Ching-Ting Chang</h5>
+-->
+<h4 align="center"><I>Ching-Ting Chang,
+        Shun-Po Chuang,</I>
+    <a href='http://speech.ee.ntu.edu.tw/~tlkagk/'><I>Hung-Yi Lee</I></a></h4>
+        <h4 align="center">Graduate Institute of Communication Engineering, National Taiwan University</h4>
+        <h5 align="center"><a href='https://arxiv.org/abs/1811.02356'>Article link</a></h5>
+<br>
+    </div>
+    <div class="container custom-container-width">
+<h4 align="center"><B>ABSTRACT</B></h4>
+Code-switching is about dealing with alternative languages in speech or text.
+It is partially speaker-depend and domain-related, so  completely explaining the phenomenon by linguistic rules is challenging.
+Compared to monolingual tasks, insufficient data is an issue for code-switching.
+To mitigate the issue without expensive human annotation, we proposed an unsupervised method for code-switching data augmentation.
+By utilizing a generative adversarial network, we can generate intra-sentential code-switching sentences from monolingual sentences.
+We applied proposed method on two corpora, and the result shows that the generated code-switching sentences improve the performance of code-switching language models.
+<br>
+<br>
+
+<!--
+<h4 align="center"><B>INTRODUCTION</B></h4>
+
+Code-switching (CS) is a phenomenon that two or more languages used within a document or a sentence.
+It is widely observed in multicultural areas, or countries where
+official language is different from native language.
+For example, Taiwanese tend to mix English and Taiwanese Hokkien in their text and speech besides their main language, Mandarin.
+In this paper, we focus on improving intra-sentential CS with embedded lexeme and phrase.
+Specifically, we only deal with words and phrases that are code-switched within a sentence.
+
+<br>
+CS is fundamentally challenging due to lack of data.
+Applying linguistic knowledge is a solution to this.
+Equivalence Constraint and Functional Head Constraint are used to build a better CS language model.
+Because of a large amount of monolingual data,  monolingual language models for host and guest languages are learned separately, and then combined with a probabilistic model for switching between the two.
+
+<br>
+Because CS is mostly used in spoken language, the most practical way of generating data is labeling CS speech.
+However, labeling speech requires hundreds of trained human laborer and hours of tedious work.
+An alternative way is to generate CS data from existing monolingual text. Unfortunately, there are no clear rules for predicting code-switching points within a sentence, since each person tends to code-switch in a different manner.
+These years, people try to synthesize more code-switching text by the models learned from data.
+
+<br>
+We propose a novel CS text generation method, by using generative adversarial network (GAN)
+, to generate CS data from monolingual sentences automatically. Our method has the following benefits:
+<ul>
+    <li> It doesn't require any CS and non-CS labeled pairs to train the data generator.
+    <li> It learns CS rules for data generation implicitly with the help of discriminator.
+    <li> It is able to augment more data of not only specific domain such as LectureSS but general domain such as SEAME.
+</ul>
+Generative models have been used to generate CS sentences, but previous work uses generative model to generate the sentences from scratch.
+Here the generator learns to modify monolingual sentences into CS sentences.
+In this way, the generator can leverage the information from monolingual sentences.
+
+<br>
+With CS data augmented by our method, it is possible to solve the problem of sparse training data.
+We conduct the experiments on two Mandarin-English code-switching  corpora, LectureSS and SEAME, which have very different statistics to show that the proposed approach generalizes well in different cases.
+The experimental results show that GAN can generate reasonable code-switching sentences, and the generated  code-switching sentences can be used to improve language modeling.
+<br>
+-->
+<br>
+<br>
+<br>
+</div>
+</body>
+</html>
