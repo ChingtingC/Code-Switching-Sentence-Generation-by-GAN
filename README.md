@@ -36,12 +36,17 @@ Code-switching is about dealing with alternative languages in speech or text. It
     - python 3
     - keras 2
     - numpy
-    - jieba
+    - [jieba](https://github.com/fxsjy/jieba)
     - h5py
     - tqdm
     - nltk
 2. Data
     - text file
+        * 2 kinds of data: 
+            1. monolingual sentences
+            2. code-switching sentences 
+        * no need aligned
+        * should be segmented into words by space (can be done by jieba)
     - speech file (for the extended experiment, i.e. automatic speech recognition(ASR))
 3. Other installation
     - kaldi
