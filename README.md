@@ -21,7 +21,7 @@ Code-switching is about dealing with alternative languages in speech or text. It
     - Code-switching Point Prediction
     - Generated Text Quality
     - Language Modeling
-    - Examples
+    - [Examples](https://chingtingc.github.io/Code-Switching-Sentence-Generation-by-GAN/)
 5. Conclusion
 
 ### Corpora
