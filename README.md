@@ -27,7 +27,7 @@ Code-switching is about dealing with alternative languages in speech or text. It
 ### Corpora
 
 1. LectureSS: The recording of “Signal and System” (SS) course by one Tai-wanese instructor at National Taiwan University in 2006.
-2. [SEAME](https://catalog.ldc.upenn.edu/LDC2015S04）: South East Asia Mandarin-English, a conversational speech by Singapore and Malaysia speakers with almost balanced gender in Nanyang Technological University and Universities Sains Malaysia.
+2. [SEAME](https://catalog.ldc.upenn.edu/LDC2015S04): South East Asia Mandarin-English, a conversational speech by Singapore and Malaysia speakers with almost balanced gender in Nanyang Technological University and Universities Sains Malaysia.
 
 ## Source Code
 
