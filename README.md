@@ -41,7 +41,7 @@ Code-switching is about dealing with alternative languages in speech or text. It
     - tqdm
     - nltk
 2. Data
-    - text file
+    - text files
         * 2 kinds of data: 
             1. monolingual sentences
             2. code-switching sentences 
@@ -51,3 +51,6 @@ Code-switching is about dealing with alternative languages in speech or text. It
 3. Other installation
     - kaldi
     - srilm
+
+### Preprocess data
+ * Use Jieba to get the part-of-speech (POS) tagger of text files
