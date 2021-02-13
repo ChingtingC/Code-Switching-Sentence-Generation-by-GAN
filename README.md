@@ -49,8 +49,8 @@ Code-switching is about dealing with alternative languages in speech or text. It
         * should be segmented into words by space (can be done by jieba)
     - speech file (for the extended experiment, i.e. automatic speech recognition(ASR))
 3. Other installation
-    - kaldi
-    - srilm
+    - [kaldi](https://kaldi-asr.org/) (for the extended experiment, ASR)
+    - [srilm](http://www.speech.sri.com/projects/srilm/)
 
 ### Preprocess data
  * Use Jieba to get the part-of-speech (POS) tagger of text files
