@@ -29,7 +29,7 @@ Code-switching is about dealing with alternative languages in speech or text. It
 1. LectureSS: The recording of “Signal and System” (SS) course by one Tai-wanese instructor at National Taiwan University in 2006.
 2. [SEAME](https://catalog.ldc.upenn.edu/LDC2015S04): South East Asia Mandarin-English, a conversational speech by Singapore and Malaysia speakers with almost balanced gender in Nanyang Technological University and Universities Sains Malaysia.
 
-## Source Code
+## Implementation
 
 ### Prerequisites
 1. Python packages
@@ -52,5 +52,13 @@ Code-switching is about dealing with alternative languages in speech or text. It
     - [kaldi](https://kaldi-asr.org/) (for the extended experiment, ASR)
     - [srilm](http://www.speech.sri.com/projects/srilm/)
 
-### Preprocess data
+### Preprocess Data
  * Use Jieba to get the part-of-speech (POS) tagger of text files
+
+### Train Model
+
+### Evaluate Result
+
+#### Code-switching Point Prediction
+#### Generated Text Quality
+#### Language Modeling
