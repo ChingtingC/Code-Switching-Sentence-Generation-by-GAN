@@ -59,6 +59,23 @@ Code-switching is about dealing with alternative languages in speech or text. It
 
 ### Evaluate Result
 
+* Baselines:
+    * ZH
+    * EN
+    * Random
+    * Noun
+
 #### Code-switching Point Prediction
+
+* Precision
+* Recall
+* F-measure
+* BLEU-1
+* Word Error Rate (WER)
+
 #### Generated Text Quality
+
+* N-gram model
+* Recurrent Neural Networks based Language Model (RNNLM)
+
 #### Language Modeling
