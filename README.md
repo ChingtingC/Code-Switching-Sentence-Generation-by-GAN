@@ -42,15 +42,36 @@ Code-switching is about dealing with alternative languages in speech or text. It
     - nltk
 2. Data
     - text files
-        * 2 kinds of data: 
-            1. monolingual sentences
-            2. code-switching sentences 
-        * no need aligned
-        * should be segmented into words by space (can be done by jieba)
-    - speech file (for the extended experiment, i.e. automatic speech recognition(ASR))
+        * Training/Development set
+            1. Mono sentences
+            2. CS sentences
+        * Testing set
+            1. Mono sentences
+            2. CS sentences
+            3. Mono sentences translated from CS sentences
+        * Note
+            * Sentences should be segmented into words by **space**.
+            * **Words** are based on H language
+            * If a **word** in H language is mapped to a **phrase** in G language, we use **dash** to connect the words into one word.
+    - Translating table from H language to G language
+    - speech file (optional, for the extended experiment ASR)
+
+Type| Example
+----|---------
+CS  | Causality 這個 也是 你 所 讀 過 的 就是 指 我 output at-any-time 只 depend-on input
+Mono from CS in H  | 因果性 這個 也是 你 所 讀 過 的 就是 指 我 輸出 在任意時間 只 取決於 輸入
+Mono from CS in G  | Causality, this is also what you have read, that means what I output at any time only depends on input
+
 3. Other installation
-    - [kaldi](https://kaldi-asr.org/) (for the extended experiment, ASR)
+    - [kaldi](https://kaldi-asr.org/) (optional, for the extended experiment ASR)
     - [srilm](http://www.speech.sri.com/projects/srilm/)
+
+* Note:
+    * Mono: monolingual
+    * CS: code-switching
+    * H: host (language)
+    * G: guest (language)
+    * ASR: automatic speech recognition
 
 ### Preprocess Data
  * Use Jieba to get the part-of-speech (POS) tagger of text files
