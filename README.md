@@ -42,13 +42,14 @@ Code-switching is about dealing with alternative languages in speech or text. It
     - nltk
 2. Data
     - text files
-        * Training/Development set
+        * Training set
             1. Mono sentences
+            2. CS sentences
+        * Development set
+            1. Mono sentences translated from CS sentences (aligned to 2.)
             2. CS sentences
         * Testing set
             1. Mono sentences
-            2. CS sentences
-            3. Mono sentences translated from CS sentences
         * Note
             * Sentences should be segmented into words by **space**.
             * **Words** are based on H language
