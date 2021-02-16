@@ -43,13 +43,13 @@ Code-switching is about dealing with alternative languages in speech or text. It
 2. Data
     - text files
         * Training set
-            1. Mono sentences
+            1. Mono sentences in H
             2. CS sentences
         * Development set
-            1. Mono sentences translated from CS sentences (aligned to 2.)
+            1. Mono sentences in H translated from CS sentences (aligned to 2.)
             2. CS sentences
         * Testing set
-            1. Mono sentences
+            1. Mono sentences in H
         * Note
             * Sentences should be segmented into words by **space**.
             * **Words** are based on H language
@@ -67,12 +67,12 @@ Mono from CS in G  | Causality, this is also what you have read, that means what
     - [kaldi](https://kaldi-asr.org/) (optional, for the extended experiment ASR)
     - [srilm](http://www.speech.sri.com/projects/srilm/)
 
-* Note:
-    * Mono: monolingual
-    * CS: code-switching
-    * H: host (language)
-    * G: guest (language)
-    * ASR: automatic speech recognition
+* **Note**
+    * **Mono**: monolingual
+    * **CS**: code-switching
+    * **H**: host (language)
+    * **G**: guest (language)
+    * **ASR**: automatic speech recognition
 
 ### Preprocess Data
  * Use Jieba to get the part-of-speech (POS) tagger of text files
