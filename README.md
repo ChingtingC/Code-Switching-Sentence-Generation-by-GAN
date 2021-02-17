@@ -60,7 +60,6 @@ Type| Example
 ----|---------
 CS  | Causality 這個 也是 你 所 讀 過 的 就是 指 我 output at-any-time 只 depend-on input
 Mono from CS in H  | 因果性 這個 也是 你 所 讀 過 的 就是 指 我 輸出 在任意時間 只 取決於 輸入
-Mono from CS in G  | Causality, this is also what you have read, that means what I output at any time only depends on input
 
 
 * **Note**
