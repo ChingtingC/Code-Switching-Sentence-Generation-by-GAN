@@ -29,9 +29,9 @@ Code-switching is about dealing with alternative languages in speech or text. It
 1. LectureSS: The recording of “Signal and System” (SS) course by one Tai-wanese instructor at National Taiwan University in 2006.
 2. [SEAME](https://catalog.ldc.upenn.edu/LDC2015S04): South East Asia Mandarin-English, a conversational speech by Singapore and Malaysia speakers with almost balanced gender in Nanyang Technological University and Universities Sains Malaysia.
 
-## Implementation
+### Experimental setup
 
-### Prerequisites
+#### Prerequisites
 1. Python packages
     - python 3
     - keras 2
@@ -39,8 +39,7 @@ Code-switching is about dealing with alternative languages in speech or text. It
     - [jieba](https://github.com/fxsjy/jieba)
     - h5py
     - tqdm
-    - nltk
-2. Data
+3. Data
     - text files
         * Training set
             1. Mono sentences in H
@@ -55,7 +54,7 @@ Code-switching is about dealing with alternative languages in speech or text. It
             * **Words** are based on H language
             * If a **word** in H language is mapped to a **phrase** in G language, we use **dash** to connect the words into one word.
     - Translating table from H language to G language
-    - speech file (optional, for the extended experiment ASR)
+    - Word list for traning word-embedding
 
 Type| Example
 ----|---------
@@ -63,9 +62,6 @@ CS  | Causality 這個 也是 你 所 讀 過 的 就是 指 我 output at-any-t
 Mono from CS in H  | 因果性 這個 也是 你 所 讀 過 的 就是 指 我 輸出 在任意時間 只 取決於 輸入
 Mono from CS in G  | Causality, this is also what you have read, that means what I output at any time only depends on input
 
-3. Other installation
-    - [kaldi](https://kaldi-asr.org/) (optional, for the extended experiment ASR)
-    - [srilm](http://www.speech.sri.com/projects/srilm/)
 
 * **Note**
     * **Mono**: monolingual
@@ -74,12 +70,13 @@ Mono from CS in G  | Causality, this is also what you have read, that means what
     * **G**: guest (language)
     * **ASR**: automatic speech recognition
 
-### Preprocess Data
- * Use Jieba to get the part-of-speech (POS) tagger of text files
+#### Preprocess Data
 
-### Train Model
+* Use Jieba to get the part-of-speech (POS) tagger of text files
 
-### Evaluate Result
+#### Train Model
+
+### Results
 
 * Baselines:
     * ZH
@@ -97,7 +94,23 @@ Mono from CS in G  | Causality, this is also what you have read, that means what
 
 #### Generated Text Quality
 
+##### Prerequisites
+
+1. Installation
+    - [srilm](http://www.speech.sri.com/projects/srilm/)
+
 * N-gram model
 * Recurrent Neural Networks based Language Model (RNNLM)
 
 #### Language Modeling
+
+#### Automatic Speech Recognition
+
+It's the extended experiment which is not shown in paper.
+
+##### Prerequisites
+1. Installation
+    - [kaldi](https://kaldi-asr.org/)
+    - [srilm](http://www.speech.sri.com/projects/srilm/)
+2. Data
+    - speech wav files & its text files
