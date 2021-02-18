@@ -42,19 +42,20 @@ Code-switching is about dealing with alternative languages in speech or text. It
 3. Data
     - text files
         * Training set
-            1. Mono sentences in H
-            2. CS sentences
+            1. **corpus/XXX/text/train.mono.txt**: Mono sentences in H
+            2. **corpus/XXX/text/train.cs.txt**: CS sentences
         * Development set
-            1. Mono sentences in H translated from CS sentences (aligned to 2.)
-            2. CS sentences
+            1. **corpus/XXX/text/dev.mono.txt**: Mono sentences in H translated from CS sentences (aligned to 2.)
+            2. **corpus/XXX/text/dev.cs.txt**: CS sentences
         * Testing set
-            1. Mono sentences in H
+            1. **corpus/XXX/text/test.mono.txt**: Mono sentences in H
         * Note
             * Sentences should be segmented into words by **space**.
             * **Words** are based on H language
             * If a **word** in H language is mapped to a **phrase** in G language, we use **dash** to connect the words into one word.
-    - Translating table from H language to G language
-    - Word list for traning word-embedding
+    - **local/XXX/translator.txt**: Translating table from H language to G language
+    - **local/XXX/dict.txt**: Word list for traning word-embedding
+    - **local/postag.txt**: POS tag list for traning pos-embedding
 
 Type| Example
 ----|---------
