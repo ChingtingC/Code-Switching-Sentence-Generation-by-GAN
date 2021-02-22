@@ -51,3 +51,42 @@ MODEL_PATH = args.MODEL_PATH
 CORPUS_NAME = args.CORPUS_NAME
 gopt = args.GOPT
 dopt = args.DOPT
+
+
+## initial declaration
+np.random.seed(0)
+text_cs = []
+text_zh = []
+if not WORD_ONLY:
+    pos_seq_cs = []
+    pos_seq_zh = []
+
+postag = dict()
+word_index = dict()
+
+# set up loss storage vector
+losses = {"d":[], "g":[]}
+log_path = './logs/' + MODEL_PATH
+callbacks = TensorBoard(log_path)
+
+# write log
+log_g = 'train_loss_g'
+log_d = 'train_loss_d'
+
+if MODEL_PATH[-1] is not "/":
+    MODEL_PATH = MODEL_PATH + "/"
+
+try:
+    os.stat(MODEL_PATH)
+except:
+    os.mkdir(MODEL_PATH)
+
+try:
+    os.stat(log_path)
+except:
+    os.mkdir(log_path)
+
+if EMBEDDING_POS <= 0:
+    WORD_ONLY = True
+else:
+    WORD_ONLY = False
