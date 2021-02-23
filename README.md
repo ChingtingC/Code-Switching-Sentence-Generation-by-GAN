@@ -72,7 +72,15 @@ Mono from CS in H  | 因果性 這個 也是 你 所 讀 過 的 就是 指 我 
 
 #### Preprocess Data
 
-* Use Jieba to get the part-of-speech (POS) tagger of text files
+* Use Jieba to get the part-of-speech (POS) tagger of text files for **proposed + POS**
+    * Path:
+        * Training set
+            1. **corpus/XXX/pos/train.mono.txt**: POS of Mono sentences of training set
+            2. **corpus/XXX/pos/train.cs.txt**: POS of CS sentences of training set
+        * Development set
+            1. **corpus/XXX/pos/dev.mono.txt**: POS of Mono sentences of development set set
+        * Testing set
+            1. **corpus/XXX/pos/test.mono.txt**: POS of Mono sentences of testing set
 
 #### Train Model
 
