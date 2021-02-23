@@ -36,7 +36,7 @@ parser.add_argument("-m", dest = "MODEL_PATH",                      default = "m
 parser.add_argument("-c", dest = "CORPUS_NAME",                     default = "sample")
 args = parser.parse_args()
 
-## initial parameter setting
+## Initial parameter setting
 MAX_SEQUENCE_LENGTH = args.MAX_SEQUENCE_LENGTH
 BATCH_SIZE = args.BATCH_SIZE
 EPOCH_NUMBER = args.EPOCH_NUMBER
@@ -53,7 +53,7 @@ gopt = args.GOPT
 dopt = args.DOPT
 
 
-## initial declaration
+## Initial declaration
 np.random.seed(0)
 text_cs = []
 text_zh = []
@@ -64,12 +64,12 @@ if not WORD_ONLY:
 postag = dict()
 word_index = dict()
 
-# set up loss storage vector
+# Set up loss storage vector
 losses = {"d":[], "g":[]}
 log_path = './logs/' + MODEL_PATH
 callbacks = TensorBoard(log_path)
 
-# write log
+# Write log
 log_g = 'train_loss_g'
 log_d = 'train_loss_d'
 
@@ -90,3 +90,48 @@ if EMBEDDING_POS <= 0:
     WORD_ONLY = True
 else:
     WORD_ONLY = False
+
+
+print("========== LoadING various data")
+
+## Define Pos tag dict
+if not WORD_ONLY:
+    with open("local/postag.txt", "r") as pos_dict:
+        idx = 1
+        for line in pos_dict:
+            line = line.strip()
+            postag[line] = idx
+            idx = idx + 1
+
+## Define word index dict
+with open("local/dict.txt", "r") as word_dict:
+    idx = 1
+    for line in word_dict:
+        line = line.strip()
+        word_index[line] = idx
+        idx = idx + 1
+
+## Load code-switching text for training
+with open("corpus/" + CORPUS_NAME + "/text/train.cs.txt", "r") as input_data:
+    for line in input_data:
+        text_cs.append(line.strip())
+
+## Load chinese sentence for training
+with open("corpus/" + CORPUS_NAME + "/text/train.mono.txt", "r") as input_data:
+     for line in input_data:
+         text_zh.append(line.strip())
+
+## Load code-switching pos for training
+if not WORD_ONLY:
+    with open("corpus/" + CORPUS_NAME + "/pos/train.cs.txt", "r") as input_data:
+        for line in input_data:
+            line = line.strip().split(' ')
+            pos_seq_cs.append(line)
+
+## Load chinese POS for training
+if not WORD_ONLY:
+    with open("corpus/" + CORPUS_NAME + "/pos/train.mono.txt", "r") as input_data:
+        for line in input_data:
+            line = line.strip().split(' ')
+            pos_seq_zh.append(line)
+
