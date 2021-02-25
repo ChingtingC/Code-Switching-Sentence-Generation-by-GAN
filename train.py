@@ -135,3 +135,15 @@ if not WORD_ONLY:
             line = line.strip().split(' ')
             pos_seq_zh.append(line)
 
+## Embed and zero pad data
+tokenizer = Tokenizer(num_words = None, filters = '!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n',
+                      lower = False, split = " ", char_level = False)
+tokenizer.word_index = word_index
+
+sequences_cs = tokenizer.texts_to_sequences(text_cs)
+sequences_zh = tokenizer.texts_to_sequences(text_zh)
+
+emb_cs = np.asarray(pad_sequences(sequences_cs, maxlen = MAX_SEQUENCE_LENGTH, padding = 'post',
+                    truncating = 'post', value = 0))
+emb_zh = np.asarray(pad_sequences(sequences_zh, maxlen = MAX_SEQUENCE_LENGTH, padding = 'post',
+                    truncating = 'post', value = 0))
