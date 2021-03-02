@@ -147,3 +147,18 @@ emb_cs = np.asarray(pad_sequences(sequences_cs, maxlen = MAX_SEQUENCE_LENGTH, pa
                     truncating = 'post', value = 0))
 emb_zh = np.asarray(pad_sequences(sequences_zh, maxlen = MAX_SEQUENCE_LENGTH, padding = 'post',
                     truncating = 'post', value = 0))
+
+
+## Set up our main training loop
+def train_for_n(nb_epoch = 5000, BATCH_SIZE = 32):
+    for e in tqdm(range(nb_epoch)):
+        ### Shuffle and Batch the data
+        _random  = np.random.randint(0, emb_cs.shape[0], size = BATCH_SIZE)
+        _random2 = np.random.randint(0, emb_zh.shape[0], size = BATCH_SIZE)
+        if not WORD_ONLY:
+            pos_seq_cs_batch = pos_seq_cs[_random]
+            pos_seq_zh_batch = pos_seq_zh[_random2]
+        emb_cs_batch = emb_cs[_random]
+        emb_zh_batch = emb_zh[_random2]
+        noise_g = np.random.normal(0, 1, size = (BATCH_SIZE, MAX_SEQUENCE_LENGTH, NOISE_SIZE))
+        reward_batch = np.zeros((BATCH_SIZE, 1))
