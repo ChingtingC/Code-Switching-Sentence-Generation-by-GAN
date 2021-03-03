@@ -162,3 +162,49 @@ def train_for_n(nb_epoch = 5000, BATCH_SIZE = 32):
         emb_zh_batch = emb_zh[_random2]
         noise_g = np.random.normal(0, 1, size = (BATCH_SIZE, MAX_SEQUENCE_LENGTH, NOISE_SIZE))
         reward_batch = np.zeros((BATCH_SIZE, 1))
+
+        #############################################
+        ### Train generator
+        #############################################
+        for ep in range(1):  # G v.s. D training ratio
+            if not WORD_ONLY:
+                output_g = generator.predict([emb_zh_batch, pos_seq_zh_batch, noise_g, reward_batch])
+            else:
+                output_g = generator.predict([emb_zh_batch, noise_g, reward_batch])
+            action_g, action_one_hot_g = get_action(output_g)
+            emb_g = translate(emb_zh_batch, action_g)
+            text_g = translate_output(emb_zh_batch, action_g)
+
+            # tag POS
+            if not WORD_ONLY:
+                pos_seq_g = []
+                for line in text_g:
+                    words = pseg.cut(line)
+                    sub_data = []
+                    idx = 0
+                    for w in words:
+                        if w.flag == "x":
+                            idx = 0
+                        elif idx == 0:
+                            sub_data.append(postag[w.flag])
+                            idx = 1
+                    pos_seq_g.append(sub_data)
+
+                pos_seq_g = pad_sequences(pos_seq_g, maxlen = MAX_SEQUENCE_LENGTH, padding='post',
+                                          truncating = 'post', value = 0)
+
+            one_hot_action = action_one_hot_g.reshape(BATCH_SIZE, MAX_SEQUENCE_LENGTH, 2)
+
+            make_trainable(generator, True)
+
+            if not WORD_ONLY:
+                reward_batch = discriminator.predict([emb_g,pos_seq_g])[:,0]
+                g_loss = generator.train_on_batch([emb_zh_batch, pos_seq_zh_batch, noise_g, reward_batch], one_hot_action)
+            else:
+                reward_batch = discriminator.predict([emb_g])[:,0]
+                g_loss = generator.train_on_batch([emb_zh_batch, noise_g, reward_batch], one_hot_action)
+
+            losses["g"].append(g_loss)
+            write_log(callbacks, log_g, g_loss, len(losses["g"]))
+            if g_loss < 0.15:  # early stop
+                break
