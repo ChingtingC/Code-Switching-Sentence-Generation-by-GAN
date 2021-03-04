@@ -198,13 +198,43 @@ def train_for_n(nb_epoch = 5000, BATCH_SIZE = 32):
             make_trainable(generator, True)
 
             if not WORD_ONLY:
-                reward_batch = discriminator.predict([emb_g,pos_seq_g])[:,0]
+                reward_batch = discriminator.predict([emb_g,pos_seq_g])[:, 0]
                 g_loss = generator.train_on_batch([emb_zh_batch, pos_seq_zh_batch, noise_g, reward_batch], one_hot_action)
             else:
-                reward_batch = discriminator.predict([emb_g])[:,0]
+                reward_batch = discriminator.predict([emb_g])[:, 0]
                 g_loss = generator.train_on_batch([emb_zh_batch, noise_g, reward_batch], one_hot_action)
 
             losses["g"].append(g_loss)
             write_log(callbacks, log_g, g_loss, len(losses["g"]))
             if g_loss < 0.15:  # early stop
                 break
+
+        #############################################
+        ### Train discriminator on generated sentence
+        #############################################
+        X_emb = np.concatenate((emb_cs_batch, emb_g))
+        if not WORD_ONLY:
+            X_pos = np.concatenate((pos_seq_cs_batch, pos_seq_g))
+        y = np.zeros([2*BATCH_SIZE])
+        y[0: BATCH_SIZE] = 0.7 + np.random.random([BATCH_SIZE])*0.3
+        y[BATCH_SIZE:] = 0 + np.random.random([BATCH_SIZE])*0.3
+
+        make_trainable(discriminator, True)
+        model.embedding_word.trainable = False
+        if not WORD_ONLY:
+            model.embedding_pos.trainable = False
+        model.g_bi.trainable = False
+
+        for ep in range(1):   # G v.s. D training ratio
+            if not WORD_ONLY:
+                d_loss  = discriminator.train_on_batch([X_emb, X_pos], y)
+            else:
+                d_loss  = discriminator.train_on_batch([X_emb], y)
+            losses["d"].append(d_loss)
+            write_log(callbacks, log_d, d_loss, len(losses["d"]))
+            if d_loss < 0.6:  # early stop
+                break
+
+    ### Save model
+    generator.save_weights(MODEL_PATH + "gen.mdl")
+    discriminator.save_weights(MODEL_PATH + "dis.mdl")
