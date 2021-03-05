@@ -148,8 +148,20 @@ emb_cs = np.asarray(pad_sequences(sequences_cs, maxlen = MAX_SEQUENCE_LENGTH, pa
 emb_zh = np.asarray(pad_sequences(sequences_zh, maxlen = MAX_SEQUENCE_LENGTH, padding = 'post',
                     truncating = 'post', value = 0))
 
+## shuffle training data for pretrain D
+ntrain = len(text_zh)
+trainidx = random.sample(range(0, emb_cs.shape[0]), ntrain)
+trainidx2 = random.sample(range(0, emb_zh.shape[0]), ntrain)
 
-## Set up our main training loop
+XT_emb = emb_cs[trainidx]
+input_g_emb = emb_zh[trainidx2]
+reward = np.zeros((ntrain, 1))
+
+if not WORD_ONLY:
+    XT_pos = pos_seq_cs[trainidx]
+    input_g_pos = pos_seq_zh[trainidx2]
+
+## Define training function
 def train_for_n(nb_epoch = 5000, BATCH_SIZE = 32):
     for e in tqdm(range(nb_epoch)):
         ### Shuffle and Batch the data
@@ -238,3 +250,69 @@ def train_for_n(nb_epoch = 5000, BATCH_SIZE = 32):
     ### Save model
     generator.save_weights(MODEL_PATH + "gen.mdl")
     discriminator.save_weights(MODEL_PATH + "dis.mdl")
+
+
+####### Build Model #######
+model = GAN(MAX_SEQUENCE_LENGTH, EMBEDDING_SIZE, EMBEDDING_POS, NOISE_SIZE,
+            HIDDEN_SIZE_L, HIDDEN_SIZE_G, HIDDEN_SIZE_D, DROPOUT_RATE)
+
+#### Build Generative model ...
+generator = model.generator
+
+#### Build Discriminative model ...
+discriminator = model.discriminator
+
+callbacks.set_model(generator)
+earlystopper = EarlyStopping(monitor = 'val_loss', patience = 2, verbose = 1)
+
+### Pre-train the discriminator network ...
+print("========== PretrainING Discriminator START!")
+t1 = time.time()
+
+noise_g = np.random.normal(0, 1, size = (ntrain, MAX_SEQUENCE_LENGTH, NOISE_SIZE))
+if not WORD_ONLY:
+    output_g = generator.predict([input_g_emb, input_g_pos, noise_g, reward])
+else:
+    output_g = generator.predict([input_g_emb, noise_g, reward])
+action_g, action_one_hot_g = get_action(output_g)
+emb_g = translate(input_g_emb, action_g)
+text_g = translate_output(input_g_emb, action_g)
+
+if not WORD_ONLY:
+    pos_seq_g = []
+    for line in text_g:
+        words = pseg.cut(line)
+        sub_data = []
+        idx = 0
+        for w in words:
+            if w.flag == "x":
+                idx = 0
+            elif idx == 0:
+                sub_data.append(postag[w.flag])
+                idx = 1
+        pos_seq_g.append(sub_data)
+    pos_seq_g = pad_sequences(pos_seq_g, maxlen = MAX_SEQUENCE_LENGTH, padding='post',
+                              truncating = 'post', value = 0)
+    X_pos = np.concatenate((XT_pos, pos_seq_g))
+
+X_emb = np.concatenate((XT_emb, emb_g))
+n = XT_emb.shape[0]
+y = np.zeros([2*n])
+y[:n] = 0.7 + np.random.random([n])*0.3
+y[n:] = 0 + np.random.random([n])*0.3
+
+random_id = np.random.randint(0, X_emb.shape[0], size = BATCH_SIZE*10)
+XX_emb = X_emb[random_id]
+y = y[random_id]
+if not WORD_ONLY:
+    XX_pos = X_pos[random_id]
+
+make_trainable(discriminator, True)
+K.set_value(discriminator.optimizer.lr, dopt)
+K.set_value(discriminator.optimizer.decay, dopt / 100)
+if not WORD_ONLY:
+    discriminator.fit([XX_emb,XX_pos], y, epochs = 10, batch_size = BATCH_SIZE, validation_split = 0.1, callbacks = [earlystopper])
+else:
+    discriminator.fit([XX_emb], y  epochs = 10, batch_size = BATCH_SIZE, validation_split = 0.1, callbacks = [earlystopper])
+
+print("========== PretrainING Discriminator with %s" % (time.time() - t1))
