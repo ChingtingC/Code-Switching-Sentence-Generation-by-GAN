@@ -34,3 +34,76 @@ parser.add_argument("-N", dest = "SAVENAME",                        default = "t
 parser.add_argument("-i", dest = "INPUT_TEXT",                      default = "corpus/sample/text/test.mono.txt")
 parser.add_argument("-o", dest = "OUTPUT_TEXT",                     default = None)
 args = parser.parse_args()
+
+
+## Initial parameter setting
+RANDOM_SEED = args.RANDOM_SEED
+MAX_SEQUENCE_LENGTH = args.MAX_SEQUENCE_LENGTH
+EMBEDDING_SIZE = args.EMBEDDING_SIZE
+EMBEDDING_POS = args.EMBEDDING_POS
+NOISE_SIZE = args.NOISE_SIZE
+HIDDEN_SIZE_G = args.HIDDEN_SIZE_G
+HIDDEN_SIZE_L = args.HIDDEN_SIZE_L
+HIDDEN_SIZE_D = args.HIDDEN_SIZE_D
+DROPOUT_RATE = args.DROPOUT_RATE
+MODEL_PATH = args.MODEL_PATH
+SAVENAME = args.SAVENAME
+INPUT_TEXT = args.INPUT_TEXT
+OUTPUT_TEXT = args.OUTPUT_TEXT
+
+
+## Initial declaration
+np.random.seed(RANDOM_SEED)
+text_zh = []
+if not WORD_ONLY:
+    pos_seq_zh = []
+    postag = dict()
+
+word_index = dict()
+
+
+if MODEL_PATH[-1] is not "/":
+    MODEL_PATH = MODEL_PATH + "/"
+
+if EMBEDDING_POS <=0:
+    WORD_ONLY = True
+else:
+    WORD_ONLY = False
+
+try:
+    os.stat("exp")
+except:
+    os.mkdir("exp")
+
+LABEL_FILE = open("exp/label." + SAVENAME,"w")
+
+if not OUTPUT_TEXT:
+    TEXT_FILE = open("exp/cs." + SAVENAME,"w")
+
+## Define Pos tag dict
+if not WORD_ONLY:
+    with open("local/postag", "r") as pos_dict:
+        idx = 1
+        for line in pos_dict:
+            line = line.strip()
+            postag[line] = idx
+            idx = idx + 1
+
+## Define word index dict
+with open("local/dict", "r") as word_dict:
+    idx = 1
+    for line in word_dict:
+        line = line.strip()
+        word_index[line] = idx
+        idx = idx + 1
+
+## Load chinese data
+with open(INPUT_TEXT, "r") as input_data:
+    for line in input_data:
+        text_zh.append(line.strip())
+
+if not WORD_ONLY:
+    with open(INPUT_TEXT + ".pos", "r") as input_data:
+        for line in input_data:
+            line = line.strip().split(' ')
+            pos_seq_zh.append(line)
