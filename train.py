@@ -73,7 +73,7 @@ callbacks = TensorBoard(log_path)
 log_g = 'train_loss_g'
 log_d = 'train_loss_d'
 
-if MODEL_PATH[-1] is not "/":
+if MODEL_PATH[-1] != "/":
     MODEL_PATH = MODEL_PATH + "/"
 
 try:
@@ -222,7 +222,7 @@ K.set_value(discriminator.optimizer.decay, dopt / 100)
 if not WORD_ONLY:
     discriminator.fit([XX_emb,XX_pos], y, epochs = 10, batch_size = BATCH_SIZE, validation_split = 0.1, callbacks = [earlystopper])
 else:
-    discriminator.fit([XX_emb], y  epochs = 10, batch_size = BATCH_SIZE, validation_split = 0.1, callbacks = [earlystopper])
+    discriminator.fit([XX_emb], y, epochs = 10, batch_size = BATCH_SIZE, validation_split = 0.1, callbacks = [earlystopper])
 
 print("========== PretrainING Discriminator with %s" % (time.time() - t1))
 
