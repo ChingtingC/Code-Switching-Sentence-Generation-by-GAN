@@ -5,7 +5,6 @@ import random
 import codecs
 import time
 import os
-import sklearn.preprocessing
 import jieba.posseg as pseg
 import numpy as np
 from tqdm import tqdm
@@ -14,7 +13,7 @@ from keras import backend as K
 from keras.callbacks import TensorBoard, EarlyStopping
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
-from utils import make_trainable, translate, translate_output, write_log, str2bool, get_action, evaluate_acc#, plot_loss
+from utils import make_trainable, translate, translate_output, write_log, str2bool, get_action, evaluate_acc
 from build_model import GAN
 
 

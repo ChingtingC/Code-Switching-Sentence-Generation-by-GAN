@@ -5,7 +5,6 @@ import random
 import codecs
 import time
 import os
-import sklearn.preprocessing
 #import jieba.posseg as pseg
 import numpy as np
 from tqdm import tqdm
@@ -69,7 +68,7 @@ if not WORD_ONLY:
     postag = dict()
 
 
-if MODEL_PATH[-1] is not "/":
+if MODEL_PATH[-1] != "/":
     MODEL_PATH = MODEL_PATH + "/"
 
 

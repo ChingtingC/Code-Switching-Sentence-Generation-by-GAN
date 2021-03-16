@@ -3,8 +3,6 @@ import codecs
 import numpy as np
 import tensorflow as tf
 import jieba.posseg as pseg
-import matplotlib.pyplot as plt
-import sklearn.preprocessing
 from tqdm import tqdm
 from keras import backend as K
 from keras.utils import np_utils
@@ -22,7 +20,7 @@ translation = dict()
 translation['']=''
 
 ## Define Pos tag dict
-with open("local/postag", "r") as pos_dict:
+with open("local/postag.txt", "r") as pos_dict:
     index = 1
     for line in pos_dict:
         line = line.strip()
@@ -62,13 +60,6 @@ def make_trainable(net, val):
     net.trainable = val
     for l in net.layers:
         l.trainable = val
-
-def plot_loss(losses):
-        plt.figure(figsize=(10,8))
-        plt.plot(losses["d"], label = 'discriminitive loss')
-        plt.plot(losses["g"], label = 'generative loss')
-        plt.legend()
-        plt.show()
 
 def max_action(action_prob):
     action = []
