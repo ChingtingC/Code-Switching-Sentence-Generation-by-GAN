@@ -62,7 +62,6 @@ class GAN:
         self.g_d2 = Dense(2, activation = "softmax", name = "generator_output")
 
         ####### Build Model #######
-        self.generator_pre = self._build_g_pre()
         self.generator = self._build_g()
         self.discriminator = self._build_d()
 
