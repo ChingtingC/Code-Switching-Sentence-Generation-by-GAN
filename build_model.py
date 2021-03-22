@@ -12,7 +12,6 @@ from keras.layers.advanced_activations import LeakyReLU
 from keras.models import Model
 from keras.utils import np_utils
 from keras import backend as K
-from utils import weighted_categorical_crossentropy
 from argparse import ArgumentParser
 
 POS_SIZE = 64
