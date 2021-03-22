@@ -59,6 +59,7 @@ def make_trainable(net, val):
     for l in net.layers:
         l.trainable = val
 
+
 def max_action(action_prob):
     action = []
     for action_prob_seq in action_prob:
@@ -67,6 +68,7 @@ def max_action(action_prob):
             action_list.append(np.argmax(action_prob))
         action.append(action_list)
     return action
+
 
 def get_action(action_prob_batch):
     action_batch = []
@@ -84,15 +86,6 @@ def get_action(action_prob_batch):
     action_one_hot_batch = np.asarray(action_one_hot_batch)
     return action_batch, action_one_hot_batch
 
-## Define reward loss of reinforcement learning
-def reward_loss(reward_and_action, action_prob):
-    reward = K.transpose([reward_and_action[:, 30, 1]] * 30)
-    action_one_hot = reward_and_action[:, :30, :]
-
-    action_prob = K.sum(action_prob * action_one_hot, axis = 2)
-    log_action_prob = K.log(action_prob)
-    loss = - K.mean(log_action_prob * reward)
-    return loss
 
 ## Use emb and G's action to translated embedding
 def translate(text, action):
@@ -117,6 +110,7 @@ def translate(text, action):
                             truncating = 'post', value = 0)
     return np.asarray(emb_new)
 
+
 ## Use emb and G's action to translated text
 def translate_output(text, action):
     text_new_all = []
@@ -136,6 +130,7 @@ def translate_output(text, action):
         text_new_all.append(temp)
     return text_new_all
 
+
 def translate_output2(text, action):
     text_new_all = []
     text_new = []
@@ -154,15 +149,6 @@ def translate_output2(text, action):
         text_new_all.append(temp)
     return text_new_all
 
-def weighted_categorical_crossentropy(y_true, y_pred):
-    weights = [1,10]
-    y_pred /= K.sum(y_pred, axis = -1, keepdims = True)
-    # clip to prevent NaN's and Inf's
-    y_pred = K.clip(y_pred, K.epsilon(), 1 - K.epsilon())
-    # calc
-    loss = y_true * K.log(y_pred) * weights
-    loss = - K.sum(loss, -1)
-    return loss
 
 def write_log(callback, name, value, batch_no):
     summary = tf.Summary()
@@ -172,11 +158,13 @@ def write_log(callback, name, value, batch_no):
     callback.writer.add_summary(summary, batch_no)
     callback.writer.flush()
 
+
 def str2bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
         return True
     else:
         return False
+
 
 def evaluate_acc(y_real, y_pred, filename):
     tn = 0.
