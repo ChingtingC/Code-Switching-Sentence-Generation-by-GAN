@@ -103,7 +103,7 @@ if not WORD_ONLY:
             idx = idx + 1
 
 ## Define word index dict
-with open("local/dict.txt", "r") as word_dict:
+with open("local/" + CORPUS_NAME + "dict.txt", "r") as word_dict:
     idx = 1
     for line in word_dict:
         line = line.strip()
