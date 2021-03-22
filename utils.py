@@ -28,15 +28,14 @@ with open("local/postag.txt", "r") as pos_dict:
         index = index + 1
 
 ## Define word index dict
-with open("local/dict", "r") as word_dict:
+with open("local/sample/dict.txt", "r") as word_dict:
     index=1
     for line in word_dict:
         line = line.strip()
         word_index[line] = index
         index = index + 1
 
-with codecs.open("local/dict", "r", encoding = 'utf-8') as word_dict:
-#with open("local/dict", "r") as word_dict:
+with codecs.open("local/sample/dict.txt", "r", encoding = 'utf-8') as word_dict:
     index = 1
     for line in word_dict:
         line = line.strip()
@@ -44,8 +43,7 @@ with codecs.open("local/dict", "r", encoding = 'utf-8') as word_dict:
         index = index + 1
 
 ## Build translator ...
-with codecs.open("local/translator", "r", encoding = 'utf-8') as _:
-#with open("local/translator", "r") as _:
+with codecs.open("local/sample/translator.txt", "r", encoding = 'utf-8') as _:
     for line in _:
         line = line.strip().split(' ')
         translation[line[0]] = ' '.join(line[1:])
