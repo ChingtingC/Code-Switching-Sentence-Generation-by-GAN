@@ -31,7 +31,8 @@ parser.add_argument("-d", dest = "DROPOUT_RATE",      type = float, default = 0.
 parser.add_argument("-m", dest = "MODEL_PATH",                      default = "model/")
 parser.add_argument("-N", dest = "SAVENAME",                        default = "txt")
 parser.add_argument("-i", dest = "INPUT_TEXT",                      default = "corpus/sample/text/test.mono.txt")
-parser.add_argument("-I", dest = "INPUT_POS",                      default = "corpus/sample/pos/test.mono.txt")
+parser.add_argument("-I", dest = "INPUT_POS",                       default = "corpus/sample/pos/test.mono.txt")
+parser.add_argument("-w", dest = "WORD_DICT",                       default = "local/sample/dict.txt")
 parser.add_argument("-o", dest = "OUTPUT_TEXT",                     default = None)
 args = parser.parse_args()
 
@@ -50,6 +51,7 @@ MODEL_PATH = args.MODEL_PATH
 SAVENAME = args.SAVENAME
 INPUT_TEXT = args.INPUT_TEXT
 INPUT_POS = args.INPUT_POS
+WORD_DICT = args.WORD_DICT
 OUTPUT_TEXT = args.OUTPUT_TEXT
 
 
@@ -86,7 +88,7 @@ if not OUTPUT_TEXT:
 
 ## Define Pos tag dict
 if not WORD_ONLY:
-    with open("local/postag", "r") as pos_dict:
+    with open("local/postag.txt", "r") as pos_dict:
         idx = 1
         for line in pos_dict:
             line = line.strip()
@@ -94,7 +96,7 @@ if not WORD_ONLY:
             idx = idx + 1
 
 ## Define word index dict
-with open("local/dict", "r") as word_dict:
+with open(WORD_DICT, "r") as word_dict:
     idx = 1
     for line in word_dict:
         line = line.strip()
