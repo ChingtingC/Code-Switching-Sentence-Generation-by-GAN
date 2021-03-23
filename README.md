@@ -24,14 +24,14 @@ Code-switching is about dealing with alternative languages in speech or text. It
     - [Examples](https://chingtingc.github.io/Code-Switching-Sentence-Generation-by-GAN/)
 5. Conclusion
 
-### Corpora
+## Corpora
 
 1. LectureSS: The recording of “Signal and System” (SS) course by one Tai-wanese instructor at National Taiwan University in 2006.
 2. [SEAME](https://catalog.ldc.upenn.edu/LDC2015S04): South East Asia Mandarin-English, a conversational speech by Singapore and Malaysia speakers with almost balanced gender in Nanyang Technological University and Universities Sains Malaysia.
 
-### Experimental setup
+## Experimental setup
 
-#### Prerequisites
+### Prerequisites
 1. Python packages
     - python 3
     - keras 2
@@ -70,7 +70,7 @@ Mono from CS in H  | 因果性 這個 也是 你 所 讀 過 的 就是 指 我 
     * **G**: guest (language)
     * **ASR**: automatic speech recognition
 
-#### Preprocess Data
+### Preprocess Data
 
 * Use Jieba to get the part-of-speech (POS) tagger of text files for **proposed + POS**
     * Path:
@@ -82,9 +82,9 @@ Mono from CS in H  | 因果性 這個 也是 你 所 讀 過 的 就是 指 我 
         * Testing set
             1. **corpus/XXX/pos/test.mono.txt**: POS of Mono sentences of testing set
 
-#### Train Model
+### Train Model
 
-### Results
+## Results
 
 * Baselines:
     * ZH
@@ -92,7 +92,7 @@ Mono from CS in H  | 因果性 這個 也是 你 所 讀 過 的 就是 指 我 
     * Random
     * Noun
 
-#### Code-switching Point Prediction
+### Code-switching Point Prediction
 
 * Precision
 * Recall
@@ -100,9 +100,9 @@ Mono from CS in H  | 因果性 這個 也是 你 所 讀 過 的 就是 指 我 
 * BLEU-1
 * Word Error Rate (WER)
 
-#### Generated Text Quality
+### Generated Text Quality
 
-##### Prerequisites
+#### Prerequisites
 
 1. Installation
     - [srilm](http://www.speech.sri.com/projects/srilm/)
@@ -110,13 +110,13 @@ Mono from CS in H  | 因果性 這個 也是 你 所 讀 過 的 就是 指 我 
 * N-gram model
 * Recurrent Neural Networks based Language Model (RNNLM)
 
-#### Language Modeling
+### Language Modeling
 
-#### Automatic Speech Recognition
+### Automatic Speech Recognition
 
 It's the extended experiment which is not shown in paper.
 
-##### Prerequisites
+#### Prerequisites
 1. Installation
     - [kaldi](https://kaldi-asr.org/)
     - [srilm](http://www.speech.sri.com/projects/srilm/)
