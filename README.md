@@ -106,6 +106,7 @@ Mono from CS in H  | 因果性 這個 也是 你 所 讀 過 的 就是 指 我 
 
 1. Installation
     - [srilm](http://www.speech.sri.com/projects/srilm/)
+        - [installation tutorial on MacOS](https://www.itread01.com/p/693909.html)
 
 * N-gram model
 * Recurrent Neural Networks based Language Model (RNNLM)
