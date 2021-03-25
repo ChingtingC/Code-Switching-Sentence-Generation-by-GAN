@@ -18,7 +18,7 @@ POS_SIZE = 64
 
 ## Define word index dict
 word_index = dict()
-with open("local/dict", "r") as word_dict:
+with open("local/sample/dict.txt", "r") as word_dict:
     idx = 1
     for line in word_dict:
         line = line.strip()
