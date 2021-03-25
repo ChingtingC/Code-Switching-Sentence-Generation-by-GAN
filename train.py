@@ -52,6 +52,13 @@ gopt = args.GOPT
 dopt = args.DOPT
 
 
+##
+if EMBEDDING_POS <= 0:
+    WORD_ONLY = True
+else:
+    WORD_ONLY = False
+
+
 ## Initial declaration
 np.random.seed(0)
 text_cs = []
@@ -84,11 +91,6 @@ try:
     os.stat(log_path)
 except:
     os.mkdir(log_path)
-
-if EMBEDDING_POS <= 0:
-    WORD_ONLY = True
-else:
-    WORD_ONLY = False
 
 
 print("========== LoadING various data")
