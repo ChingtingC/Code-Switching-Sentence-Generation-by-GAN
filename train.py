@@ -83,14 +83,19 @@ if MODEL_PATH[-1] != "/":
     MODEL_PATH = MODEL_PATH + "/"
 
 try:
-    os.stat(MODEL_PATH)
+    os.stat('./logs/')
 except:
-    os.mkdir(MODEL_PATH)
+    os.mkdir('./logs/')
 
 try:
     os.stat(log_path)
 except:
     os.mkdir(log_path)
+
+try:
+    os.stat(MODEL_PATH)
+except:
+    os.mkdir(MODEL_PATH)
 
 
 print("========== LoadING various data")
@@ -105,7 +110,7 @@ if not WORD_ONLY:
             idx = idx + 1
 
 ## Define word index dict
-with open("local/" + CORPUS_NAME + "dict.txt", "r") as word_dict:
+with open("local/" + CORPUS_NAME + "/dict.txt", "r") as word_dict:
     idx = 1
     for line in word_dict:
         line = line.strip()
